@@ -10,7 +10,7 @@ $ npm install
 Create a user in MySQL using following command in MySQL Shell
 ######################################
 
-create user jailer@localhost identified by `password`;
+create user jailer@localhost identified by 'password';
 grant all privileges on *.* to jailer;
 
 ######################################
@@ -24,4 +24,4 @@ $ /* add a make file for initializing data*/
 
 ######################################
 
-Contributer - kushwahahimanshu22 | AyushSinghRajputMNIT | 'Kapil's Username'
+Contributer - kushwahahimanshu22 | AyushSinghRajputMNIT | KapilRaWT

@@ -1,4 +1,4 @@
-const db = require('./prisonrecord/db.js');
+const db = require('./db.js');
 
 async function runDDL(sql, isAdmin = false) {
     try {

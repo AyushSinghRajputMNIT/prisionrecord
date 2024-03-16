@@ -16,13 +16,12 @@ exports.getPrisoners = async (req,res,next) => {
 exports.getPrisonerById = async (req, res, next) => {
   try{
     const prisoner = await Prisoner.findOne(req.params.id);
-    console.log(prisoner)
     if(prisoner.length === 0){
       res.status(404).json({
         status: 'failed',
         message: `Prisoner with id ${req.params.id} does not exist`
       });
-      next();
+      return next();
     }
     res.status(200).json({
       status: 'success',

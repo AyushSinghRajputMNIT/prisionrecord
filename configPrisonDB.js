@@ -1,21 +1,33 @@
-const db = require('./db.js');
+const mysql = require('mysql2');
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
 
-async function runDDL(sql, isAdmin = false) {
+//Connecting Database
+const config = {
+	host: process.env.DATABASE_HOST,
+	user: process.env.DATABASE_USER,
+	password: process.env.DATABASE_PASS
+}
+
+const db = mysql.createConnection(config);
+
+db.connect(function(err){
+	if(err) throw(err);
+	console.log("DB Connection made!");
+});
+
+async function runDDL(sql) {
     try {
-        if (isAdmin) {
             await db.execute(sql);
-            console.log('DDL operation executed successfully.');
-        } else {
-            console.log('Only admins can execute this DDL operation.');
-        }
+						console.log('Database Configured');
     } catch (err) {
         console.error('Error executing DDL operation', err);
     }
 }
 
-
+//Defining queries
 const createPrisonTable = `
-    create table Prison(
+    create table ${process.env.DATABASE}.Prison(
 	prison_id varchar(45) not null, 
 	prison_name text not null,
 	address text not null,
@@ -24,7 +36,7 @@ const createPrisonTable = `
 `;
 
 const createCaseTable = `
-    create table \`Case\`(
+    create table ${process.env.DATABASE}.\`Case\`(
 	case_id varchar(45) not null,
 	case_type text not null,
     	case_description text not null,
@@ -32,7 +44,7 @@ const createCaseTable = `
 `;
 
 const createPrisonerTable = `
-    create table Prisoner(
+    create table ${process.env.DATABASE}.Prisoner(
 	prisoner_id varchar(45) not null,
     	prison_id varchar(45) not null,
 	prisoner_name text not null,
@@ -43,29 +55,15 @@ const createPrisonerTable = `
     	address text not null,
 	ward_id varchar(45) not null,
 	primary key(prisoner_id),
-	constraint fk_prison foreign key(prison_id) references Prison(prison_id),
-	constraint fk_case foreign key(case_id) references \`Case\`(case_id));
+	constraint fk_prison foreign key(prison_id) references ${process.env.DATABASE}.Prison(prison_id),
+	constraint fk_case foreign key(case_id) references ${process.env.DATABASE}.\`Case\`(case_id));
 `;
 
-const alterTable = `
-    
-`;
-
-const dropPrisonTable = `
-    DROP TABLE IF EXISTS prison
-`;
-
-const dropPrisonerTable = `
-    DROP TABLE IF EXISTS prisoner
-`;
-
-const dropCaseTableStatement = `
-    DROP TABLE IF EXISTS \`case\`
-`;
-
-
+//Executing the scripts
+runDDL(`create database ${process.env.DATABASE};`);
 runDDL(createPrisonTable);
-runDDL(createPrisonerTable);
 runDDL(createCaseTable);
-runDDL(alterTable, isAdmin);
-runDDL(dropTable, isAdmin);
+runDDL(createPrisonerTable);
+
+//Closing connection
+db.end();

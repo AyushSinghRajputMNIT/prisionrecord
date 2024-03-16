@@ -1,0 +1,1224 @@
+[
+{
+    "type": "header",
+    "version": "5.2.1",
+    "comment": "Export to JSON plugin for PHPMyAdmin"
+},
+{
+    "type": "database",
+    "name": "PrisonDB"
+},
+{
+    "type": "table",
+    "name": "Case",
+    "database": "PrisonDB",
+    "data": 
+[
+{
+    "case_id": "1",
+    "case_type": "Assault",
+    "case_description": "Assault on a Public Officer"
+},
+{
+    "case_id": "10",
+    "case_type": "Theft",
+    "case_description": "Vehicle Theft"
+},
+{
+    "case_id": "2",
+    "case_type": "Robbery",
+    "case_description": "Armed Robbery"
+},
+{
+    "case_id": "3",
+    "case_type": "Drug Possession",
+    "case_description": "Possession of Controlled Substances"
+},
+{
+    "case_id": "4",
+    "case_type": "Fraud",
+    "case_description": "Credit Card Fraud"
+},
+{
+    "case_id": "5",
+    "case_type": "Burglary",
+    "case_description": "Residential Burglary"
+},
+{
+    "case_id": "6",
+    "case_type": "Homicide",
+    "case_description": "First-Degree Murder"
+},
+{
+    "case_id": "7",
+    "case_type": "Forgery",
+    "case_description": "Forgery of Documents"
+},
+{
+    "case_id": "8",
+    "case_type": "Kidnapping",
+    "case_description": "Child Abduction"
+},
+{
+    "case_id": "9",
+    "case_type": "Arson",
+    "case_description": "Arson in the First Degree"
+}
+]
+
+}
+,{
+    "type": "table",
+    "name": "Prison",
+    "database": "PrisonDB",
+    "data": 
+[
+{
+    "prison_id": "P001",
+    "prison_name": "Delhi Central Jail",
+    "address": "789 Yamuna Vihar, Delhi",
+    "warden": "Amit Verma"
+},
+{
+    "prison_id": "P002",
+    "prison_name": "Mumbai Central Prison",
+    "address": "456 Lotus Lane, Mumbai",
+    "warden": "Priya Singh"
+},
+{
+    "prison_id": "P003",
+    "prison_name": "Kolkata Maximum Security Prison",
+    "address": "123 Taj Nagar, Kolkata",
+    "warden": "Vikram Patel"
+},
+{
+    "prison_id": "P004",
+    "prison_name": "Chennai Correctional Facility",
+    "address": "890 Himalaya Road, Chennai",
+    "warden": "Rahul Sharma"
+},
+{
+    "prison_id": "P005",
+    "prison_name": "Bangalore State Penitentiary",
+    "address": "234 Kaveri Circle, Bangalore",
+    "warden": "Neha Reddy"
+},
+{
+    "prison_id": "P006",
+    "prison_name": "Hyderabad Detention Center",
+    "address": "567 Ganga Nagar, Hyderabad",
+    "warden": "Rajesh Kumar"
+}
+]
+
+}
+,{
+    "type": "table",
+    "name": "Prisoner",
+    "database": "PrisonDB",
+    "data": 
+[
+{
+    "prisoner_id": "PR001",
+    "prison_id": "P001",
+    "prisoner_name": "Rahul Sharma",
+    "case_id": "1",
+    "date_in": "2023-05-10",
+    "date_out": null,
+    "age": "35",
+    "address": "123 Ganga Nagar, Delhi",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR002",
+    "prison_id": "P001",
+    "prisoner_name": "Priya Patel",
+    "case_id": "2",
+    "date_in": "2023-08-20",
+    "date_out": "2025-02-15",
+    "age": "28",
+    "address": "456 Yamuna Vihar, Mumbai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR003",
+    "prison_id": "P002",
+    "prisoner_name": "Vikram Singh",
+    "case_id": "3",
+    "date_in": "2022-12-03",
+    "date_out": "2024-09-18",
+    "age": "42",
+    "address": "789 Taj Nagar, Kolkata",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR004",
+    "prison_id": "P002",
+    "prisoner_name": "Ananya Gupta",
+    "case_id": "4",
+    "date_in": "2024-01-15",
+    "date_out": null,
+    "age": "31",
+    "address": "567 Lotus Lane, Chennai",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR005",
+    "prison_id": "P003",
+    "prisoner_name": "Suresh Kumar",
+    "case_id": "5",
+    "date_in": "2023-10-30",
+    "date_out": "2025-06-22",
+    "age": "39",
+    "address": "890 Himalaya Road, Bangalore",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR006",
+    "prison_id": "P003",
+    "prisoner_name": "Pooja Sharma",
+    "case_id": "6",
+    "date_in": "2023-04-05",
+    "date_out": null,
+    "age": "25",
+    "address": "234 Kaveri Circle, Hyderabad",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR007",
+    "prison_id": "P001",
+    "prisoner_name": "Amit Dubey",
+    "case_id": "7",
+    "date_in": "2024-02-28",
+    "date_out": null,
+    "age": "33",
+    "address": "789 Yamuna Vihar, Mumbai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR008",
+    "prison_id": "P002",
+    "prisoner_name": "Neha Singh",
+    "case_id": "8",
+    "date_in": "2023-09-10",
+    "date_out": "2025-01-05",
+    "age": "29",
+    "address": "345 Lotus Lane, Kolkata",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR009",
+    "prison_id": "P003",
+    "prisoner_name": "Rajesh Patel",
+    "case_id": "9",
+    "date_in": "2022-11-15",
+    "date_out": null,
+    "age": "37",
+    "address": "567 Ganga Nagar, Delhi",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR010",
+    "prison_id": "P001",
+    "prisoner_name": "Anjali Gupta",
+    "case_id": "10",
+    "date_in": "2023-07-20",
+    "date_out": "2025-03-12",
+    "age": "44",
+    "address": "123 Yamuna Vihar, Mumbai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR011",
+    "prison_id": "P002",
+    "prisoner_name": "Ravi Kumar",
+    "case_id": "1",
+    "date_in": "2024-04-10",
+    "date_out": null,
+    "age": "26",
+    "address": "890 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR012",
+    "prison_id": "P003",
+    "prisoner_name": "Shweta Sharma",
+    "case_id": "2",
+    "date_in": "2023-01-02",
+    "date_out": "2025-09-18",
+    "age": "32",
+    "address": "456 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR013",
+    "prison_id": "P001",
+    "prisoner_name": "Sachin Gupta",
+    "case_id": "3",
+    "date_in": "2023-12-05",
+    "date_out": null,
+    "age": "36",
+    "address": "234 Lotus Lane, Kolkata",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR014",
+    "prison_id": "P002",
+    "prisoner_name": "Monika Singh",
+    "case_id": "4",
+    "date_in": "2023-05-30",
+    "date_out": "2025-08-22",
+    "age": "30",
+    "address": "678 Taj Nagar, Chennai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR015",
+    "prison_id": "P003",
+    "prisoner_name": "Vishal Kumar",
+    "case_id": "5",
+    "date_in": "2022-10-15",
+    "date_out": null,
+    "age": "41",
+    "address": "890 Ganga Nagar, Delhi",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR016",
+    "prison_id": "P004",
+    "prisoner_name": "Amit Singh",
+    "case_id": "6",
+    "date_in": "2023-11-18",
+    "date_out": null,
+    "age": "38",
+    "address": "456 Lotus Lane, Mumbai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR017",
+    "prison_id": "P005",
+    "prisoner_name": "Neha Verma",
+    "case_id": "7",
+    "date_in": "2023-06-25",
+    "date_out": "2025-09-30",
+    "age": "27",
+    "address": "789 Himalaya Road, Chennai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR018",
+    "prison_id": "P006",
+    "prisoner_name": "Rajesh Sharma",
+    "case_id": "8",
+    "date_in": "2022-12-10",
+    "date_out": null,
+    "age": "45",
+    "address": "123 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR019",
+    "prison_id": "P001",
+    "prisoner_name": "Priya Kumari",
+    "case_id": "9",
+    "date_in": "2023-08-15",
+    "date_out": "2025-02-10",
+    "age": "31",
+    "address": "567 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR020",
+    "prison_id": "P002",
+    "prisoner_name": "Anjali Reddy",
+    "case_id": "10",
+    "date_in": "2024-05-20",
+    "date_out": null,
+    "age": "29",
+    "address": "890 Kaveri Circle, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR021",
+    "prison_id": "P003",
+    "prisoner_name": "Sachin Patel",
+    "case_id": "1",
+    "date_in": "2023-04-01",
+    "date_out": "2025-07-28",
+    "age": "36",
+    "address": "234 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR022",
+    "prison_id": "P004",
+    "prisoner_name": "Monika Gupta",
+    "case_id": "2",
+    "date_in": "2022-11-05",
+    "date_out": null,
+    "age": "33",
+    "address": "678 Lotus Lane, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR023",
+    "prison_id": "P005",
+    "prisoner_name": "Ravi Verma",
+    "case_id": "3",
+    "date_in": "2023-07-10",
+    "date_out": "2025-01-15",
+    "age": "40",
+    "address": "890 Ganga Nagar, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR024",
+    "prison_id": "P006",
+    "prisoner_name": "Shweta Singh",
+    "case_id": "4",
+    "date_in": "2024-02-15",
+    "date_out": null,
+    "age": "26",
+    "address": "567 Himalaya Road, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR025",
+    "prison_id": "P001",
+    "prisoner_name": "Vikram Kumar",
+    "case_id": "5",
+    "date_in": "2023-09-30",
+    "date_out": "2025-03-25",
+    "age": "41",
+    "address": "123 Kaveri Circle, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR026",
+    "prison_id": "P002",
+    "prisoner_name": "Pooja Gupta",
+    "case_id": "6",
+    "date_in": "2023-03-15",
+    "date_out": null,
+    "age": "30",
+    "address": "456 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR027",
+    "prison_id": "P003",
+    "prisoner_name": "Rahul Sharma",
+    "case_id": "7",
+    "date_in": "2022-10-20",
+    "date_out": "2024-12-28",
+    "age": "28",
+    "address": "789 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR028",
+    "prison_id": "P004",
+    "prisoner_name": "Ananya Reddy",
+    "case_id": "8",
+    "date_in": "2024-07-05",
+    "date_out": null,
+    "age": "34",
+    "address": "567 Yamuna Vihar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR029",
+    "prison_id": "P005",
+    "prisoner_name": "Suresh Verma",
+    "case_id": "9",
+    "date_in": "2023-05-01",
+    "date_out": "2025-09-05",
+    "age": "39",
+    "address": "890 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR030",
+    "prison_id": "P006",
+    "prisoner_name": "Priyanka Patel",
+    "case_id": "10",
+    "date_in": "2023-01-10",
+    "date_out": "2025-06-15",
+    "age": "32",
+    "address": "234 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR031",
+    "prison_id": "P001",
+    "prisoner_name": "Aakash Singh",
+    "case_id": "1",
+    "date_in": "2023-10-12",
+    "date_out": "2025-03-18",
+    "age": "33",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR032",
+    "prison_id": "P002",
+    "prisoner_name": "Divya Patel",
+    "case_id": "2",
+    "date_in": "2024-05-25",
+    "date_out": null,
+    "age": "29",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR033",
+    "prison_id": "P003",
+    "prisoner_name": "Vivek Sharma",
+    "case_id": "3",
+    "date_in": "2023-07-15",
+    "date_out": "2025-02-20",
+    "age": "37",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR034",
+    "prison_id": "P004",
+    "prisoner_name": "Anjali Gupta",
+    "case_id": "4",
+    "date_in": "2022-12-20",
+    "date_out": null,
+    "age": "28",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR035",
+    "prison_id": "P005",
+    "prisoner_name": "Arjun Reddy",
+    "case_id": "5",
+    "date_in": "2023-03-05",
+    "date_out": "2025-08-10",
+    "age": "42",
+    "address": "234 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR036",
+    "prison_id": "P006",
+    "prisoner_name": "Pooja Verma",
+    "case_id": "6",
+    "date_in": "2023-08-10",
+    "date_out": null,
+    "age": "31",
+    "address": "789 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR037",
+    "prison_id": "P001",
+    "prisoner_name": "Raj Kumar",
+    "case_id": "7",
+    "date_in": "2022-11-18",
+    "date_out": "2024-06-25",
+    "age": "35",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR038",
+    "prison_id": "P002",
+    "prisoner_name": "Ananya Singh",
+    "case_id": "8",
+    "date_in": "2023-05-22",
+    "date_out": null,
+    "age": "30",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR039",
+    "prison_id": "P003",
+    "prisoner_name": "Sandeep Patel",
+    "case_id": "9",
+    "date_in": "2024-02-15",
+    "date_out": "2026-01-20",
+    "age": "39",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR040",
+    "prison_id": "P004",
+    "prisoner_name": "Mehak Gupta",
+    "case_id": "10",
+    "date_in": "2023-09-10",
+    "date_out": null,
+    "age": "27",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR041",
+    "prison_id": "P005",
+    "prisoner_name": "Kiran Reddy",
+    "case_id": "1",
+    "date_in": "2023-12-25",
+    "date_out": "2025-05-30",
+    "age": "38",
+    "address": "234 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR042",
+    "prison_id": "P006",
+    "prisoner_name": "Anjali Verma",
+    "case_id": "2",
+    "date_in": "2023-04-10",
+    "date_out": null,
+    "age": "32",
+    "address": "789 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR043",
+    "prison_id": "P001",
+    "prisoner_name": "Nitin Kumar",
+    "case_id": "3",
+    "date_in": "2024-01-05",
+    "date_out": "2025-06-10",
+    "age": "34",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR044",
+    "prison_id": "P002",
+    "prisoner_name": "Riya Singh",
+    "case_id": "4",
+    "date_in": "2023-06-15",
+    "date_out": null,
+    "age": "31",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR045",
+    "prison_id": "P003",
+    "prisoner_name": "Amit Patel",
+    "case_id": "5",
+    "date_in": "2023-09-20",
+    "date_out": "2025-04-25",
+    "age": "40",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR046",
+    "prison_id": "P004",
+    "prisoner_name": "Kavita Sharma",
+    "case_id": "6",
+    "date_in": "2023-11-18",
+    "date_out": null,
+    "age": "28",
+    "address": "456 Lotus Lane, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR047",
+    "prison_id": "P005",
+    "prisoner_name": "Rahul Reddy",
+    "case_id": "7",
+    "date_in": "2023-06-25",
+    "date_out": "2025-09-30",
+    "age": "27",
+    "address": "789 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR048",
+    "prison_id": "P006",
+    "prisoner_name": "Preeti Verma",
+    "case_id": "8",
+    "date_in": "2022-12-10",
+    "date_out": "2024-03-15",
+    "age": "36",
+    "address": "123 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR049",
+    "prison_id": "P001",
+    "prisoner_name": "Vishal Kumar",
+    "case_id": "9",
+    "date_in": "2023-08-15",
+    "date_out": null,
+    "age": "31",
+    "address": "567 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR050",
+    "prison_id": "P002",
+    "prisoner_name": "Aarti Gupta",
+    "case_id": "10",
+    "date_in": "2024-05-20",
+    "date_out": null,
+    "age": "29",
+    "address": "890 Kaveri Circle, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR051",
+    "prison_id": "P003",
+    "prisoner_name": "Priya Patel",
+    "case_id": "1",
+    "date_in": "2023-04-01",
+    "date_out": "2025-07-28",
+    "age": "32",
+    "address": "234 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR052",
+    "prison_id": "P004",
+    "prisoner_name": "Rohit Singh",
+    "case_id": "2",
+    "date_in": "2022-11-05",
+    "date_out": null,
+    "age": "33",
+    "address": "678 Lotus Lane, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR053",
+    "prison_id": "P005",
+    "prisoner_name": "Divya Verma",
+    "case_id": "3",
+    "date_in": "2023-07-10",
+    "date_out": "2025-01-15",
+    "age": "35",
+    "address": "890 Ganga Nagar, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR054",
+    "prison_id": "P006",
+    "prisoner_name": "Nitin Patel",
+    "case_id": "4",
+    "date_in": "2024-02-15",
+    "date_out": "2025-08-20",
+    "age": "30",
+    "address": "567 Himalaya Road, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR055",
+    "prison_id": "P001",
+    "prisoner_name": "Anjali Kumari",
+    "case_id": "5",
+    "date_in": "2023-09-30",
+    "date_out": null,
+    "age": "26",
+    "address": "123 Kaveri Circle, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR056",
+    "prison_id": "P002",
+    "prisoner_name": "Rajesh Kumar",
+    "case_id": "6",
+    "date_in": "2023-03-15",
+    "date_out": null,
+    "age": "39",
+    "address": "456 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR057",
+    "prison_id": "P003",
+    "prisoner_name": "Meera Sharma",
+    "case_id": "7",
+    "date_in": "2022-10-20",
+    "date_out": "2024-12-28",
+    "age": "29",
+    "address": "789 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR058",
+    "prison_id": "P004",
+    "prisoner_name": "Sachin Singh",
+    "case_id": "8",
+    "date_in": "2024-07-05",
+    "date_out": null,
+    "age": "36",
+    "address": "567 Yamuna Vihar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR059",
+    "prison_id": "P005",
+    "prisoner_name": "Kavita Verma",
+    "case_id": "9",
+    "date_in": "2023-05-01",
+    "date_out": "2025-09-05",
+    "age": "34",
+    "address": "890 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR060",
+    "prison_id": "P006",
+    "prisoner_name": "Vivek Patel",
+    "case_id": "10",
+    "date_in": "2023-01-10",
+    "date_out": null,
+    "age": "38",
+    "address": "234 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR061",
+    "prison_id": "P001",
+    "prisoner_name": "Aarav Singh",
+    "case_id": "1",
+    "date_in": "2023-10-12",
+    "date_out": "2025-03-18",
+    "age": "33",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR062",
+    "prison_id": "P002",
+    "prisoner_name": "Neha Sharma",
+    "case_id": "2",
+    "date_in": "2024-05-25",
+    "date_out": null,
+    "age": "29",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR063",
+    "prison_id": "P003",
+    "prisoner_name": "Rahul Kumar",
+    "case_id": "3",
+    "date_in": "2023-07-15",
+    "date_out": "2025-02-20",
+    "age": "37",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR064",
+    "prison_id": "P004",
+    "prisoner_name": "Shreya Gupta",
+    "case_id": "4",
+    "date_in": "2022-12-20",
+    "date_out": null,
+    "age": "28",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR065",
+    "prison_id": "P005",
+    "prisoner_name": "Aditya Reddy",
+    "case_id": "5",
+    "date_in": "2023-03-05",
+    "date_out": "2025-08-10",
+    "age": "42",
+    "address": "234 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR066",
+    "prison_id": "P006",
+    "prisoner_name": "Aarti Verma",
+    "case_id": "6",
+    "date_in": "2023-08-10",
+    "date_out": null,
+    "age": "31",
+    "address": "789 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR067",
+    "prison_id": "P001",
+    "prisoner_name": "Soham Kumar",
+    "case_id": "7",
+    "date_in": "2022-11-18",
+    "date_out": "2024-06-25",
+    "age": "35",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR068",
+    "prison_id": "P002",
+    "prisoner_name": "Aradhya Singh",
+    "case_id": "8",
+    "date_in": "2023-05-22",
+    "date_out": null,
+    "age": "30",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR069",
+    "prison_id": "P003",
+    "prisoner_name": "Riya Patel",
+    "case_id": "9",
+    "date_in": "2024-02-15",
+    "date_out": "2026-01-20",
+    "age": "39",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR070",
+    "prison_id": "P004",
+    "prisoner_name": "Vihaan Gupta",
+    "case_id": "10",
+    "date_in": "2023-09-10",
+    "date_out": null,
+    "age": "27",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR071",
+    "prison_id": "P005",
+    "prisoner_name": "Aanya Reddy",
+    "case_id": "1",
+    "date_in": "2023-12-25",
+    "date_out": "2025-05-30",
+    "age": "38",
+    "address": "234 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR072",
+    "prison_id": "P006",
+    "prisoner_name": "Aarohi Verma",
+    "case_id": "2",
+    "date_in": "2023-04-10",
+    "date_out": null,
+    "age": "32",
+    "address": "789 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR073",
+    "prison_id": "P001",
+    "prisoner_name": "Reyansh Kumar",
+    "case_id": "3",
+    "date_in": "2024-01-05",
+    "date_out": "2025-06-10",
+    "age": "34",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR074",
+    "prison_id": "P002",
+    "prisoner_name": "Anaya Singh",
+    "case_id": "4",
+    "date_in": "2023-06-15",
+    "date_out": null,
+    "age": "31",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR075",
+    "prison_id": "P003",
+    "prisoner_name": "Aahana Patel",
+    "case_id": "5",
+    "date_in": "2023-09-20",
+    "date_out": "2025-04-25",
+    "age": "40",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR076",
+    "prison_id": "P004",
+    "prisoner_name": "Advik Singh",
+    "case_id": "6",
+    "date_in": "2023-11-18",
+    "date_out": null,
+    "age": "28",
+    "address": "456 Lotus Lane, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR077",
+    "prison_id": "P005",
+    "prisoner_name": "Ishaan Reddy",
+    "case_id": "7",
+    "date_in": "2023-06-25",
+    "date_out": "2025-09-30",
+    "age": "27",
+    "address": "789 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR078",
+    "prison_id": "P006",
+    "prisoner_name": "Anvi Verma",
+    "case_id": "8",
+    "date_in": "2022-12-10",
+    "date_out": "2024-03-15",
+    "age": "36",
+    "address": "123 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR079",
+    "prison_id": "P001",
+    "prisoner_name": "Aditi Kumar",
+    "case_id": "9",
+    "date_in": "2023-08-15",
+    "date_out": null,
+    "age": "31",
+    "address": "567 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR080",
+    "prison_id": "P002",
+    "prisoner_name": "Aaryan Gupta",
+    "case_id": "10",
+    "date_in": "2024-05-20",
+    "date_out": null,
+    "age": "29",
+    "address": "890 Kaveri Circle, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR081",
+    "prison_id": "P003",
+    "prisoner_name": "Arya Patel",
+    "case_id": "1",
+    "date_in": "2023-04-01",
+    "date_out": "2025-07-28",
+    "age": "32",
+    "address": "234 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR082",
+    "prison_id": "P004",
+    "prisoner_name": "Saumya Singh",
+    "case_id": "2",
+    "date_in": "2022-11-05",
+    "date_out": null,
+    "age": "33",
+    "address": "678 Lotus Lane, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR083",
+    "prison_id": "P005",
+    "prisoner_name": "Pranav Verma",
+    "case_id": "3",
+    "date_in": "2023-07-10",
+    "date_out": "2025-01-15",
+    "age": "35",
+    "address": "890 Ganga Nagar, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR084",
+    "prison_id": "P006",
+    "prisoner_name": "Kavya Patel",
+    "case_id": "4",
+    "date_in": "2024-02-15",
+    "date_out": "2025-08-20",
+    "age": "30",
+    "address": "567 Himalaya Road, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR085",
+    "prison_id": "P001",
+    "prisoner_name": "Siddharth Kumar",
+    "case_id": "5",
+    "date_in": "2023-09-30",
+    "date_out": null,
+    "age": "26",
+    "address": "123 Kaveri Circle, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR086",
+    "prison_id": "P002",
+    "prisoner_name": "Dhruv Kumar",
+    "case_id": "6",
+    "date_in": "2023-03-15",
+    "date_out": null,
+    "age": "39",
+    "address": "456 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR087",
+    "prison_id": "P003",
+    "prisoner_name": "Manvi Sharma",
+    "case_id": "7",
+    "date_in": "2022-10-20",
+    "date_out": "2024-12-28",
+    "age": "29",
+    "address": "789 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR088",
+    "prison_id": "P004",
+    "prisoner_name": "Kritika Singh",
+    "case_id": "8",
+    "date_in": "2024-07-05",
+    "date_out": null,
+    "age": "36",
+    "address": "567 Yamuna Vihar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR089",
+    "prison_id": "P005",
+    "prisoner_name": "Atharv Verma",
+    "case_id": "9",
+    "date_in": "2023-05-01",
+    "date_out": "2025-09-05",
+    "age": "34",
+    "address": "890 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR090",
+    "prison_id": "P006",
+    "prisoner_name": "Siya Patel",
+    "case_id": "10",
+    "date_in": "2023-01-10",
+    "date_out": null,
+    "age": "38",
+    "address": "234 Ganga Nagar, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR091",
+    "prison_id": "P001",
+    "prisoner_name": "Shaurya Singh",
+    "case_id": "1",
+    "date_in": "2023-10-12",
+    "date_out": "2025-03-18",
+    "age": "33",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR092",
+    "prison_id": "P002",
+    "prisoner_name": "Kashvi Sharma",
+    "case_id": "2",
+    "date_in": "2024-05-25",
+    "date_out": null,
+    "age": "29",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR093",
+    "prison_id": "P003",
+    "prisoner_name": "Parth Kumar",
+    "case_id": "3",
+    "date_in": "2023-07-15",
+    "date_out": "2025-02-20",
+    "age": "37",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR094",
+    "prison_id": "P004",
+    "prisoner_name": "Aashi Gupta",
+    "case_id": "4",
+    "date_in": "2022-12-20",
+    "date_out": null,
+    "age": "28",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR095",
+    "prison_id": "P005",
+    "prisoner_name": "Hriday Reddy",
+    "case_id": "5",
+    "date_in": "2023-03-05",
+    "date_out": "2025-08-10",
+    "age": "42",
+    "address": "234 Himalaya Road, Bangalore",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR096",
+    "prison_id": "P006",
+    "prisoner_name": "Saanvi Verma",
+    "case_id": "6",
+    "date_in": "2023-08-10",
+    "date_out": null,
+    "age": "31",
+    "address": "789 Kaveri Circle, Hyderabad",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR097",
+    "prison_id": "P001",
+    "prisoner_name": "Aarush Kumar",
+    "case_id": "7",
+    "date_in": "2022-11-18",
+    "date_out": "2024-06-25",
+    "age": "35",
+    "address": "456 Yamuna Vihar, Delhi",
+    "ward_id": "W002"
+},
+{
+    "prisoner_id": "PR098",
+    "prison_id": "P002",
+    "prisoner_name": "Arnav Singh",
+    "case_id": "8",
+    "date_in": "2023-05-22",
+    "date_out": null,
+    "age": "30",
+    "address": "123 Lotus Lane, Mumbai",
+    "ward_id": "W003"
+},
+{
+    "prisoner_id": "PR099",
+    "prison_id": "P003",
+    "prisoner_name": "Ritvi Patel",
+    "case_id": "9",
+    "date_in": "2024-02-15",
+    "date_out": "2026-01-20",
+    "age": "39",
+    "address": "890 Taj Nagar, Kolkata",
+    "ward_id": "W001"
+},
+{
+    "prisoner_id": "PR100",
+    "prison_id": "P004",
+    "prisoner_name": "Vivaan Gupta",
+    "case_id": "10",
+    "date_in": "2023-09-10",
+    "date_out": null,
+    "age": "27",
+    "address": "567 Ganga Nagar, Chennai",
+    "ward_id": "W002"
+}
+]
+
+}
+]

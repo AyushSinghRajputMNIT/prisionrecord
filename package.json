@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "databaseConf": "node configPrisonDB.js"
+    "databaseConf": "node configPrisonDB.js",
+    "insertDummy" : "node insertData.js"
   },
   "author": "",
   "license": "ISC",

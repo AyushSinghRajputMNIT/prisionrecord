@@ -24,11 +24,13 @@ class Prisoner{
   }
 
   async save(){
+    //Add parameterised query
     await db.execute(`INSERT INTO prisoner values('${this.prisoner_id}', '${this.prison_id}', '${this.prisoner_name}', '${this.case_id}', '${this.date_in}', ${this.date_out ? `'${this.date_out}'` : null}, '${this.age}', '${this.address}', '${this.ward_id}')`);
   }
 
-  async findAndUpdate(){
-    
+  async update(){
+    //Add parameterised query
+    await db.execute(`UPDATE prisoner set prison_id = ${this.prison_id}, prisoner_name = ${this.prisoner_name}, case_id = ${this.case_id}, date_in = ${this.date_in}, date_out = ${this.date_out ? `'${this.date_out}'` : null}, address = ${this.address}, ward_id = ${this.ward_id} where prisoner_id = ${this.prisoner_id}`);
   }
 };
 

@@ -58,12 +58,20 @@ const createPrisonerTable = `
 	constraint fk_prison foreign key(prison_id) references ${process.env.DATABASE}.Prison(prison_id),
 	constraint fk_case foreign key(case_id) references ${process.env.DATABASE}.\`Case\`(case_id));
 `;
-
+const createUsers=`CREATE TABLE ${process.env.DATABASE}.users (
+	id INT  AUTO_INCREMENT PRIMARY KEY,
+	name varchar(40),
+	email varchar(40),
+	password varchar(256),
+	LastPassChange datetime,
+	role varchar(16),
+	aadhar int(12)
+)`
 //Executing the scripts
 runDDL(`create database ${process.env.DATABASE};`);
 runDDL(createPrisonTable);
 runDDL(createCaseTable);
 runDDL(createPrisonerTable);
-
+runDDL(createUsers);
 //Closing connection
 db.end();

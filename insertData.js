@@ -31,4 +31,14 @@ data[4].data.forEach(async el => {
     el.date_out=el.date_out?el.date_out:null;
     await db.execute('INSERT INTO prisoner values(?,?,?,?,?,?,?,?,?)',[el.prisoner_id,el.prison_id,el.prisoner_name,el.case_id,el.date_in,el.date_out,el.age,el.address,el.ward_id]);
 });
+async function addAdmin(){
+    const name="admin";
+    const email="admin@prison.com";
+    const password="$2a$12$/VbsAlVo.BbsnPtSGbBzZebFSFnmqGtSxD.WUZrf/4TGM34Nux05e";
+    const LastPassChange=null;
+    const role="admin";
+    const aadhar=null;
+    await db.execute('INSERT INTO users(name,email,password,LastPassChange,role,aadhar) VALUES(?,?,?,?,?,?)',[name,email,password,LastPassChange,role,aadhar]);
+}
+addAdmin();
 db.end();

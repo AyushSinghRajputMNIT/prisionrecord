@@ -1,5 +1,7 @@
 # Prison Records
 
+### Note: Rename 'config.env.template' to 'config.env' before running
+
 Please run the following instructions:
 <br>
 ```

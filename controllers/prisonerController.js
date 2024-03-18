@@ -50,5 +50,9 @@ exports.createPrisoner = async (req, res, next) => {
 
 
 exports.updatePrisoner = async (req,res,next) => {
-
+  const prisoner = await Prisoner.findOne(req.body.prisoner_id);
+  res.status(204).json({
+    status: 'success',
+    data: prisoner
+  })
 }

@@ -23,4 +23,4 @@ Caution - Please add your own users using the '/v1/api/users/signup' route, as t
 $ /* add a make file for initializing data*/
 ```
 
-Contributer - kushwahahimanshu22 | AyushSinghRajputMNIT | KapilRaWT
+Contributers - kushwahahimanshu22 | AyushSinghRajputMNIT | KapilRaWT

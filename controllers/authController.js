@@ -57,6 +57,7 @@ exports.signup = async (req,res,next) => {
 }
 
 exports.login = async (req,res,next) => {
+  console.log(req.body);
   const user = await User.findOneByEmail(req.body.email);
   if(!user[0] || !(await bcrypt.compare(req.body.password, user[0].password))){
     res.status(401).json({

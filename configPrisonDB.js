@@ -27,7 +27,7 @@ async function runDDL(sql) {
 
 //Defining queries
 const createPrisonTable = `
-    create table ${process.env.DATABASE}.Prison(
+    create table ${process.env.DATABASE}.prison(
 	prison_id varchar(45) not null, 
 	prison_name text not null,
 	address text not null,
@@ -36,7 +36,7 @@ const createPrisonTable = `
 `;
 
 const createCaseTable = `
-    create table ${process.env.DATABASE}.\`Case\`(
+    create table ${process.env.DATABASE}.\`case\`(
 	case_id varchar(45) not null,
 	case_type text not null,
     	case_description text not null,
@@ -44,7 +44,7 @@ const createCaseTable = `
 `;
 
 const createPrisonerTable = `
-    create table ${process.env.DATABASE}.Prisoner(
+    create table ${process.env.DATABASE}.prisoner(
 	prisoner_id varchar(45) not null,
     	prison_id varchar(45) not null,
 	prisoner_name text not null,

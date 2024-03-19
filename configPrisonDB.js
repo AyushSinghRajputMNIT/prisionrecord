@@ -55,8 +55,8 @@ const createPrisonerTable = `
     	address text not null,
 	ward_id varchar(45) not null,
 	primary key(prisoner_id),
-	constraint fk_prison foreign key(prison_id) references ${process.env.DATABASE}.Prison(prison_id),
-	constraint fk_case foreign key(case_id) references ${process.env.DATABASE}.\`Case\`(case_id));
+	constraint fk_prison foreign key(prison_id) references ${process.env.DATABASE}.prison(prison_id),
+	constraint fk_case foreign key(case_id) references ${process.env.DATABASE}.\`case\`(case_id));
 `;
 const createUsers=`CREATE TABLE ${process.env.DATABASE}.users (
 	id INT  AUTO_INCREMENT PRIMARY KEY,

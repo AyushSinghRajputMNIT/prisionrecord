@@ -8,10 +8,10 @@ Please run the following instructions:
 npm install
 ```
 
-## Create a user in MySQL using following command in MySQL Shell
+## Create a user in MySQL using following command in MySQL Shell (Replace localhost with your domain if required)
 ```
 create user jailer@localhost identified by 'password';
-grant all privileges on *.* to jailer;
+grant all privileges on *.* to jailer@localhost;
 ```
 ## Configure Database
 

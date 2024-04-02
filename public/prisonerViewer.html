@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prisoners List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #f2f2f2;
+        color: #333;
+      }
+      tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+      .home-link {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        color: blue;
+        text-decoration: none;
+      }
+      .filter-container {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: flex;
+        align-items: center;
+      }
+      .filter-container label {
+        margin-right: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/home.html" class="home-link">Home</a>
+    <div class="container">
+      <h1>Prisoners List</h1>
+      <div class="filter-container">
+        <label for="filterId">Filter ID:</label>
+        <input type="text" id="filterId" />
+        <button onclick="filterPrisoners()">Search</button>
+        <a href="#" id="showAll">Show All</a>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Prisoner ID</th>
+            <th>Name</th>
+            <th>Case ID</th>
+            <th>Date In</th>
+            <th>Date Out</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Ward ID</th>
+          </tr>
+        </thead>
+        <tbody id="prisonerTableBody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      function fetchPrisonerById(id) {
+        fetch(`/api/v1/prisoner/${id}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const prisoner = data.data;
+            const prisonerTableBody =
+              document.querySelector('#prisonerTableBody');
+            prisonerTableBody.innerHTML = '';
+
+            prisoner.forEach((prisoner) => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+            <td>${prisoner.prisoner_id}</td>
+            <td>${prisoner.prisoner_name}</td>
+            <td>${prisoner.case_id}</td>
+            <td>${prisoner.date_in}</td>
+            <td>${prisoner.date_out || ''}</td>
+            <td>${prisoner.age}</td>
+            <td>${prisoner.address}</td>
+            <td>${prisoner.ward_id}</td>
+            `;
+              prisonerTableBody.appendChild(row);
+            });
+            const newUrl =
+              window.location.origin + '/prisonerViewer.html/' + id;
+            history.pushState(null, null, newUrl);
+          })
+          .catch((error) =>
+            console.error('Error fetching prisoner data:', error)
+          );
+      }
+
+      function fetchAllPrisoners() {
+        fetch('/api/v1/prisoner')
+          .then((response) => response.json())
+          .then((data) => {
+            const prisoners = data.data;
+            const prisonerTableBody =
+              document.querySelector('#prisonerTableBody');
+
+            prisonerTableBody.innerHTML = '';
+            prisoners.forEach((prisoner) => {
+              const row = document.createElement('tr');
+              row.innerHTML = `
+            <td>${prisoner.prisoner_id}</td>
+            <td>${prisoner.prisoner_name}</td>
+            <td>${prisoner.case_id}</td>
+            <td>${prisoner.date_in}</td>
+            <td>${prisoner.date_out || ''}</td>
+            <td>${prisoner.age}</td>
+            <td>${prisoner.address}</td>
+            <td>${prisoner.ward_id}</td>
+            `;
+              prisonerTableBody.appendChild(row);
+            });
+            const newUrl = window.location.origin + '/prisonerViewer.html';
+            history.pushState(null, null, newUrl);
+          })
+          .catch((error) =>
+            console.error('Error fetching prisoner data:', error)
+          );
+      }
+
+      function filterPrisoners() {
+        const filterId = document.getElementById('filterId').value;
+        if (filterId.trim() !== '') {
+          fetchPrisonerById(filterId);
+        } else {
+          fetchAllPrisoners();
+        }
+      }
+
+      fetchAllPrisoners();
+
+      document
+        .getElementById('showAll')
+        .addEventListener('click', function (event) {
+          event.preventDefault();
+          fetchAllPrisoners();
+        });
+    </script>
+  </body>
+</html>

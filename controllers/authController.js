@@ -110,3 +110,41 @@ exports.restrict = (...roles) => (req,res,next) => {
   }
   next();
 }
+
+exports.isLoggedIn = async (req,res,next) => {
+  let token;
+  try{
+    if (
+      req.headers.authorization &&
+      req.headers.authorization.startsWith('Bearer')
+    ) {
+      token = req.headers.authorization.split(' ')[1];
+    } else if (req.cookies.jwt) {
+      token = req.cookies.jwt;
+    }
+    else{
+      return next();
+    }
+    const decoded = await promisify(jwt.verify)(token, process.env.SALT);
+    const user = await User.findOne(decoded.id);
+    if(!user){
+      return next();
+    }
+    user[0].password = null;
+    req.user = user[0]
+    res.locals.user = user[0]
+    console.log(user)
+    next();
+  }
+  catch(err){
+
+  }
+}
+
+exports.logout = (req,res,next) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+  res.status(200).json({ status: 'success' });
+}

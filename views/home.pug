@@ -76,7 +76,7 @@ body
   .container
     .top-container
       if user 
-        button(onclick='logout()') Logout
+        button.btn(onclick='logout()') Logout
       else
         a.btn(href='/login') Login
         a.btn.signup-btn(href='/signup') Sign Up
@@ -91,7 +91,7 @@ body
     try{
     const res = await fetch('api/v1/users/logout')
     data = await res.json()
-    if(data.status === 'success') window.location.reload();
+    if(data.status === 'success') location.reload(true);
     }
     catch(err){
       console.log(err);

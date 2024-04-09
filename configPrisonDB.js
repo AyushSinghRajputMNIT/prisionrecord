@@ -65,7 +65,7 @@ const createUsers=`CREATE TABLE ${process.env.DATABASE}.users (
 	password varchar(256),
 	LastPassChange datetime,
 	role varchar(16),
-	aadhar int(12)
+	aadhar varchar(12)
 )`
 //Executing the scripts
 runDDL(`create database ${process.env.DATABASE};`);

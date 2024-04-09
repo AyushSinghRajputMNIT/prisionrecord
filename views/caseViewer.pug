@@ -1,0 +1,150 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Cases List
+  style.
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    }
+    .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    }
+    h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    }
+    th,
+    td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+    th {
+    background-color: #f2f2f2;
+    color: #333;
+    }
+    tr:nth-child(even) {
+    background-color: #f9f9f9;
+    }
+    tr:hover {
+    background-color: #f1f1f1;
+    }
+    .home-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: blue;
+    text-decoration: none;
+    }
+    .filter-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    }
+    .filter-container input[type='text'] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    }
+    .filter-container input[type='submit'] {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    .filter-container input[type='submit']:hover {
+    background-color: #45a049;
+    }
+body
+  a.home-link(href='/home') Home
+  .container
+    h1 Cases List
+    .filter-container
+      label(for='filterId') Filter ID:
+      input#filterId(type='text')
+      button(onclick='filterCases()') Search
+      a#showAll(href='#') Show All
+    table#caseTable
+      thead
+        tr
+          th Case ID
+          th Type
+          th Description
+      tbody#caseTableBody
+  script.
+    function fetchCaseById(id) {
+    fetch(`/api/v1/case/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+    const cases = data.data;
+    const caseTableBody = document.querySelector('#caseTableBody');
+    caseTableBody.innerHTML = '';
+    cases.forEach((cas) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${cas.case_id}</td>
+    <td>${cas.case_type}</td>
+    <td>${cas.case_description}</td>
+    `;
+    caseTableBody.appendChild(row);
+    });
+    history.pushState(null, null, newUrl);
+    })
+    .catch((error) => console.error('Error fetching case data:', error));
+    }
+    function fetchAllCases() {
+    fetch('/api/v1/case')
+    .then((response) => response.json())
+    .then((data) => {
+    const cases = data.data;
+    const caseTableBody = document.querySelector('#caseTableBody');
+    caseTableBody.innerHTML = '';
+    cases.forEach((cas) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${cas.case_id}</td>
+    <td>${cas.case_type}</td>
+    <td>${cas.case_description}</td>
+    `;
+    caseTableBody.appendChild(row);
+    });
+    history.pushState(null, null, newUrl);
+    })
+    .catch((error) => console.error('Error fetching case data:', error));
+    }
+    function filterCases() {
+    const filterId = document.getElementById('filterId').value;
+    if (filterId.trim() !== '') {
+    fetchCaseById(filterId);
+    } else {
+    fetchAllCases();
+    }
+    }
+    fetchAllCases();
+    document
+    .getElementById('showAll')
+    .addEventListener('click', function (event) {
+    event.preventDefault();
+    fetchAllCases();
+    });

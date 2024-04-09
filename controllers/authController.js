@@ -23,8 +23,10 @@ const createToken = (user, statusCode, res) => {
 }
 
 exports.signup = async (req,res,next) => {
-  if(!req.body.name){
-    res.status(403).json({
+  try{
+
+    if(!req.body.name){
+      res.status(403).json({
       status:'failed',
       message:'Please give a name'
     });
@@ -54,10 +56,14 @@ exports.signup = async (req,res,next) => {
   await user.save();
   user = await User.findOneByEmail(user.email);
   return createToken(user[0], 201, res);
+  }
+  catch(err){
+    return next(err);
+  }
 }
 
 exports.login = async (req,res,next) => {
- // console.log(req.body);
+  // console.log(req.body);
   const user = await User.findOneByEmail(req.body.email);
   if(!user[0] || !(await bcrypt.compare(req.body.password, user[0].password))){
     res.status(401).json({
@@ -133,11 +139,11 @@ exports.isLoggedIn = async (req,res,next) => {
     user[0].password = null;
     req.user = user[0]
     res.locals.user = user[0]
-    console.log(user)
+    // console.log(user)
     next();
   }
   catch(err){
-
+    next();
   }
 }
 

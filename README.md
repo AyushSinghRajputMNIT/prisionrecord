@@ -24,5 +24,6 @@ Caution - Please add your own users using the '/v1/api/users/signup' route, as t
 ```
 npm run insertDummy
 ```
+Note - For Admin, Username : admin@prison.com, Password: admin
 
 Contributers - <a href='https://www.github.com/kushwahahimanshu22'>kushwahahimanshu22</a> | <a href='https://www.github.com/AyushSinghRajputMNIT'>AyushSinghRajputMNIT</a> | <a href='https://www.github.com/KapilRaWT'>KapilRaWT</a>

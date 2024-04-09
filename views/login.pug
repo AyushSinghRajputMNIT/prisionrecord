@@ -1,0 +1,117 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Login
+  style.
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    }
+    h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    }
+    form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    label {
+    display: block;
+    margin-bottom: 10px;
+    color: #333;
+    }
+    input[type='email'],
+    input[type='password'] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    }
+    button[type='submit'] {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    }
+    button[type='submit']:hover {
+    background-color: #45a049;
+    }
+    .home-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: blue;
+    text-decoration: none;
+    }
+    .switch {
+    text-align: center;
+    margin-top: 20px;
+    }
+    .switch p {
+    margin: 0;
+    color: #333;
+    }
+    .switch a {
+    color: #4caf50;
+    text-decoration: none;
+    }
+    .switch a:hover {
+    text-decoration: underline;
+    }
+body
+  a.home-link(href='/home.html') Home
+  h1 Login
+  form#login-form
+    label(for='email') Email:
+    input#email(type='email' name='email' required='')
+    br
+    label(for='password') Password:
+    input#password(type='password' name='password' required='')
+    br
+    button(type='submit') Login
+  .switch
+    p
+      | Don&apos;t have an account? 
+      a(href='/signup.html') Sign Up
+  script.
+    document
+    .getElementById('login-form')
+    .addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    try {
+    const response = await fetch('/api/v1/users/login', {
+    method: 'POST',
+    headers: {
+    'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+    email: email,
+    password: password,
+    }),
+    });
+    console.log(response)
+    if (response.ok) {
+    window.location.href = '/home';
+    } else {
+    const data = await response.json();
+    alert(data.message);
+    }
+    } catch (error) {
+    console.error('Error logging in:', error);
+    }
+    });

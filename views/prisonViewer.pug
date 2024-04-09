@@ -1,0 +1,157 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Prisons List
+  style.
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    }
+    .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+    }
+    h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    }
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ddd;
+    }
+    th,
+    td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+    th {
+    background-color: #f2f2f2;
+    color: #333;
+    }
+    tr:nth-child(even) {
+    background-color: #f9f9f9;
+    }
+    tr:hover {
+    background-color: #f1f1f1;
+    }
+    .home-link {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: blue;
+    text-decoration: none;
+    }
+    .filter-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    }
+    .filter-container input[type='text'] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    }
+    .filter-container input[type='submit'] {
+    padding: 8px 15px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    .filter-container input[type='submit']:hover {
+    background-color: #45a049;
+    }
+body
+  a.home-link(href='/home') Home
+  .container
+    h1 Prisons List
+    .filter-container
+      label(for='filterId') Filter ID:
+      input#filterId(type='text')
+      button(onclick='filterPrisons()') Search
+      a#showAll(href='#') Show All
+    table#prisonTable
+      thead
+        tr
+          th Prison ID
+          th Name
+          th Address
+          th Warden
+      tbody#prisonTableBody
+  script.
+    function fetchPrisonById(id) {
+    fetch(`/api/v1/prison/${id}`)
+    .then((response) => response.json())
+    .then((data) => {
+    const prison = data.data;
+    const prisonTableBody = document.querySelector('#prisonTableBody');
+    prisonTableBody.innerHTML = '';
+    prison.forEach((prison) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${prison.prison_id}</td>
+    <td>${prison.prison_name}</td>
+    <td>${prison.address}</td>
+    <td>${prison.warden}</td>
+    `;
+    prisonTableBody.appendChild(row);
+    });
+    history.pushState(null, null, newUrl);
+    })
+    .catch((error) =>
+    console.error('Error fetching prison data:', error)
+    );
+    }
+    function fetchAllPrisons() {
+    fetch('/api/v1/prison')
+    .then((response) => response.json())
+    .then((data) => {
+    const prisons = data.data;
+    const prisonTableBody = document.querySelector('#prisonTableBody');
+    prisonTableBody.innerHTML = '';
+    prisons.forEach((prison) => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+    <td>${prison.prison_id}</td>
+    <td>${prison.prison_name}</td>
+    <td>${prison.address}</td>
+    <td>${prison.warden}</td>
+    `;
+    prisonTableBody.appendChild(row);
+    });
+    history.pushState(null, null, newUrl);
+    })
+    .catch((error) =>
+    console.error('Error fetching prison data:', error)
+    );
+    }
+    function filterPrisons() {
+    const filterId = document.getElementById('filterId').value;
+    if (filterId.trim() !== '') {
+    fetchPrisonById(filterId);
+    } else {
+    fetchAllPrisons();
+    }
+    }
+    fetchAllPrisons();
+    document
+    .getElementById('showAll')
+    .addEventListener('click', function (event) {
+    event.preventDefault();
+    fetchAllPrisons();
+    });

@@ -25,4 +25,4 @@ Caution - Please add your own users using the '/v1/api/users/signup' route, as t
 npm run insertDummy
 ```
 
-Contributers - <a href='github.com/kushwahahimanshu22'>kushwahahimanshu22</a> | AyushSinghRajputMNIT | KapilRaWT
+Contributers - <a href='https://www.github.com/kushwahahimanshu22'>kushwahahimanshu22</a> | <a href='https://www.github.com/AyushSinghRajputMNIT'>AyushSinghRajputMNIT</a> | <a href='https://www.github.com/KapilRaWT'>KapilRaWT</a>

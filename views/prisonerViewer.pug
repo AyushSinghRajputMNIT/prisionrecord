@@ -62,10 +62,78 @@ head
     .filter-container label {
     margin-right: 5px;
     }
+    form {
+    margin-bottom: 20px;
+    }
+    form input[type='text'],
+    form input[type='date'],
+    form input[type='number'] {
+    width: calc(100% - 100px);
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    }
+    form button {
+    width: 100px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    form button:hover {
+    background-color: #45a049;
+    }
+    .btn{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 100px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 body
   a.home-link(href='/home') Home
+  if user 
+        button.btn(onclick='logout()') Logout
   .container
     h1 Prisoners List
+    if user && user.role === 'admin'
+      form#addPrisonerForm
+        label(for='prisoner_id') Prisoner ID:
+        input#prisoner_id(type='text', name='prisoner_id', required)
+        br
+        label(for='prison_id') Prison ID:
+        input#prison_id(type='text', name='prison_id', required)
+        br
+        label(for='prisoner_name') Name:
+        input#prisoner_name(type='text', name='prisoner_name', required)
+        br
+        label(for='case_id') Case ID:
+        input#case_id(type='number', name='case_id', required)
+        br
+        label(for='date_in') Date In:
+        input#date_in(type='date', name='date_in', required)
+        br
+        label(for='date_out') Date Out:
+        input#date_out(type='date', name='date_out')
+        br
+        label(for='age') Age:
+        input#age(type='number', name='age', required)
+        br
+        label(for='address') Address:
+        input#address(type='text', name='address', required)
+        br
+        label(for='ward_id') Ward ID:
+        input#ward_id(type='text', name='ward_id', required)
+        br
+        button(type='submit') Add Prisoner
     .filter-container
       label(for='filterId') Filter ID:
       input#filterId(type='text')
@@ -83,76 +151,119 @@ body
           th Address
           th Ward ID
       tbody#prisonerTableBody
+    
   script.
+    async function logout() {
+    try{
+    const res = await fetch('api/v1/users/logout')
+    data = await res.json()
+    if(data.status === 'success') {
+      location.reload(true);
+      location.href = '/home';
+      }
+    }
+    catch(err){
+      console.log(err);
+    }    
+    }
     function fetchPrisonerById(id) {
-    fetch(`/api/v1/prisoner/${id}`)
-    .then((response) => response.json())
-    .then((data) => {
-    const prisoner = data.data;
-    const prisonerTableBody =
-    document.querySelector('#prisonerTableBody');
-    prisonerTableBody.innerHTML = '';
-    prisoner.forEach((prisoner) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <td>${prisoner.prisoner_id}</td>
-    <td>${prisoner.prisoner_name}</td>
-    <td>${prisoner.case_id}</td>
-    <td>${prisoner.date_in}</td>
-    <td>${prisoner.date_out || ''}</td>
-    <td>${prisoner.age}</td>
-    <td>${prisoner.address}</td>
-    <td>${prisoner.ward_id}</td>
-    `;
-    prisonerTableBody.appendChild(row);
-    });
-    const newUrl =
-    history.pushState(null, null, newUrl);
-    })
-    .catch((error) =>
-    console.error('Error fetching prisoner data:', error)
-    );
-    }
-    function fetchAllPrisoners() {
-    fetch('/api/v1/prisoner')
-    .then((response) => response.json())
-    .then((data) => {
-    const prisoners = data.data;
-    const prisonerTableBody =
-    document.querySelector('#prisonerTableBody');
-    prisonerTableBody.innerHTML = '';
-    prisoners.forEach((prisoner) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-    <td>${prisoner.prisoner_id}</td>
-    <td>${prisoner.prisoner_name}</td>
-    <td>${prisoner.case_id}</td>
-    <td>${prisoner.date_in}</td>
-    <td>${prisoner.date_out || ''}</td>
-    <td>${prisoner.age}</td>
-    <td>${prisoner.address}</td>
-    <td>${prisoner.ward_id}</td>
-    `;
-    prisonerTableBody.appendChild(row);
-    });
-    history.pushState(null, null, newUrl);
-    })
-    .catch((error) =>
-    console.error('Error fetching prisoner data:', error)
-    );
-    }
-    function filterPrisoners() {
-    const filterId = document.getElementById('filterId').value;
-    if (filterId.trim() !== '') {
-    fetchPrisonerById(filterId);
-    } else {
-    fetchAllPrisoners();
-    }
-    }
-    fetchAllPrisoners();
-    document
-    .getElementById('showAll')
-    .addEventListener('click', function (event) {
-    event.preventDefault();
-    fetchAllPrisoners();
-    });
+      fetch(`/api/v1/prisoner/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+      const prisoner = data.data;
+      const prisonerTableBody =
+      document.querySelector('#prisonerTableBody');
+      prisonerTableBody.innerHTML = '';
+      prisoner.forEach((prisoner) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+      <td>${prisoner.prisoner_id}</td>
+      <td>${prisoner.prisoner_name}</td>
+      <td>${prisoner.case_id}</td>
+      <td>${prisoner.date_in}</td>
+      <td>${prisoner.date_out || ''}</td>
+      <td>${prisoner.age}</td>
+      <td>${prisoner.address}</td>
+      <td>${prisoner.ward_id}</td>
+      `;
+      prisonerTableBody.appendChild(row);
+      });
+      })
+      .catch((error) =>
+      console.error('Error fetching prisoner data:', error)
+      );
+      }
+      function fetchAllPrisoners() {
+      fetch('/api/v1/prisoner')
+      .then((response) => response.json())
+      .then((data) => {
+      const prisoners = data.data;
+      const prisonerTableBody =
+      document.querySelector('#prisonerTableBody');
+      prisonerTableBody.innerHTML = '';
+      prisoners.forEach((prisoner) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+      <td>${prisoner.prisoner_id}</td>
+      <td>${prisoner.prisoner_name}</td>
+      <td>${prisoner.case_id}</td>
+      <td>${prisoner.date_in}</td>
+      <td>${prisoner.date_out || ''}</td>
+      <td>${prisoner.age}</td>
+      <td>${prisoner.address}</td>
+      <td>${prisoner.ward_id}</td>
+      `;
+      prisonerTableBody.appendChild(row);
+      });
+      })
+      .catch((error) =>
+      console.error('Error fetching prisoner data:', error)
+      );
+      }
+      function filterPrisoners() {
+      const filterId = document.getElementById('filterId').value;
+      if (filterId.trim() !== '') {
+      fetchPrisonerById(filterId);
+      } else {
+      fetchAllPrisoners();
+      }
+      }
+      fetchAllPrisoners();
+      document
+      .getElementById('showAll')
+      .addEventListener('click', function (event) {
+      event.preventDefault();
+      fetchAllPrisoners();
+      });
+      document.addEventListener('DOMContentLoaded', function () {
+    const addPrisonerForm = document.getElementById('addPrisonerForm');
+    if (addPrisonerForm) {
+      addPrisonerForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      console.log('Form submitted');
+      const formData = new FormData(this);
+      const prisonerData = {};
+      formData.forEach((value, key) => {
+        prisonerData[key] = value;
+      });
+      fetch('/api/v1/prisoner', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(prisonerData),
+      })
+        .then((response) => {
+          console.log('Response received:', response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Response data:', data); 
+          fetchAllPrisoners();
+        })
+        .catch((error) => console.error('Error adding prisoner:', error));
+      });
+    }});
+
+
+    

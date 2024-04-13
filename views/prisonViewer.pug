@@ -76,10 +76,63 @@ head
     .filter-container input[type='submit']:hover {
     background-color: #45a049;
     }
+    form {
+    margin-bottom: 20px;
+    }
+    form input[type='text'],
+    form input[type='date'],
+    form input[type='number'] {
+    width: calc(100% - 100px);
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    }
+    form button {
+    width: 100px;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+    form button:hover {
+    background-color: #45a049;
+    }
+    .btn{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 100px;
+      padding: 10px;
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
 body
   a.home-link(href='/home') Home
+  if user 
+    button.btn(onclick='logout()') Logout
   .container
     h1 Prisons List
+    if user && user.role === 'admin'
+      form#addPrisonForm
+        label(for='prison_id') Prison ID:
+        input#prison_id(type='text', name='prison_id', required)
+        br
+        label(for='prison_name') Name:
+        input#prison_name(type='text', name='prison_name', required)
+        br
+        label(for='address') Address:
+        input#address(type='text', name='address', required)
+        br
+        label(for='warden') Warden:
+        input#warden(type='text', name='warden', required)
+        br
+        button(type='submit') Add Prison
     .filter-container
       label(for='filterId') Filter ID:
       input#filterId(type='text')
@@ -94,6 +147,19 @@ body
           th Warden
       tbody#prisonTableBody
   script.
+    async function logout() {
+    try{
+    const res = await fetch('api/v1/users/logout')
+    data = await res.json()
+    if(data.status === 'success') {
+      location.reload(true);
+      location.href = '/home';
+      }
+    }
+    catch(err){
+      console.log(err);
+    }    
+    }
     function fetchPrisonById(id) {
     fetch(`/api/v1/prison/${id}`)
     .then((response) => response.json())
@@ -155,3 +221,32 @@ body
     event.preventDefault();
     fetchAllPrisons();
     });
+    document.addEventListener('DOMContentLoaded', function () {
+    const addPrisonForm = document.getElementById('addPrisonForm');
+    if (addPrisonForm) {
+      addPrisonForm.addEventListener('submit', function (event) {
+      event.preventDefault();
+      console.log('Form submitted');
+      const formData = new FormData(this);
+      const prisonData = {};
+      formData.forEach((value, key) => {
+        prisonData[key] = value;
+      });
+      fetch('/api/v1/prison', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(prisonData),
+      })
+        .then((response) => {
+          console.log('Response received:', response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Response data:', data); 
+          fetchAllPrisons();
+        })
+        .catch((error) => console.error('Error adding prison:', error));
+      });
+    }});

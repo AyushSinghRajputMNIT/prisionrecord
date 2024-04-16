@@ -143,6 +143,7 @@ body
       thead
         tr
           th Prisoner ID
+          th Prison ID
           th Name
           th Case ID
           th Date In
@@ -178,6 +179,7 @@ body
       const row = document.createElement('tr');
       row.innerHTML = `
       <td>${prisoner.prisoner_id}</td>
+      <td>${prisoner.prison_id}</td>
       <td>${prisoner.prisoner_name}</td>
       <td>${prisoner.case_id}</td>
       <td>${prisoner.date_in}</td>
@@ -205,6 +207,7 @@ body
       const row = document.createElement('tr');
       row.innerHTML = `
       <td>${prisoner.prisoner_id}</td>
+      <td>${prison.prisoner_id}</td>
       <td>${prisoner.prisoner_name}</td>
       <td>${prisoner.case_id}</td>
       <td>${prisoner.date_in}</td>

@@ -11,7 +11,7 @@ head
     background-color: #f4f4f4;
     }
     .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
@@ -65,6 +65,14 @@ head
     form {
     margin-bottom: 20px;
     }
+    .form-container {
+    display: flex; 
+    }
+    .form-container form {
+    width: 50%; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    }
     form input[type='text'],
     form input[type='date'],
     form input[type='number'] {
@@ -101,39 +109,71 @@ head
 body
   a.home-link(href='/home') Home
   if user 
-        button.btn(onclick='logout()') Logout
+    button.btn(onclick='logout()') Logout
   .container
     h1 Prisoners List
     if user && user.role === 'admin'
-      form#addPrisonerForm
-        label(for='prisoner_id') Prisoner ID:
-        input#prisoner_id(type='text', name='prisoner_id', required)
-        br
-        label(for='prison_id') Prison ID:
-        input#prison_id(type='text', name='prison_id', required)
-        br
-        label(for='prisoner_name') Name:
-        input#prisoner_name(type='text', name='prisoner_name', required)
-        br
-        label(for='case_id') Case ID:
-        input#case_id(type='number', name='case_id', required)
-        br
-        label(for='date_in') Date In:
-        input#date_in(type='date', name='date_in', required)
-        br
-        label(for='date_out') Date Out:
-        input#date_out(type='date', name='date_out')
-        br
-        label(for='age') Age:
-        input#age(type='number', name='age', required)
-        br
-        label(for='address') Address:
-        input#address(type='text', name='address', required)
-        br
-        label(for='ward_id') Ward ID:
-        input#ward_id(type='text', name='ward_id', required)
-        br
-        button(type='submit') Add Prisoner
+      .form-container
+        form#addPrisonerForm
+          label(for='prisoner_id') Prisoner ID:
+          input#prisoner_id(type='text', name='prisoner_id', required)
+          br
+          label(for='prison_id') Prison ID:
+          input#prison_id(type='text', name='prison_id', required)
+          br
+          label(for='prisoner_name') Name:
+          input#prisoner_name(type='text', name='prisoner_name', required)
+          br
+          label(for='case_id') Case ID:
+          input#case_id(type='number', name='case_id', required)
+          br
+          label(for='date_in') Date In:
+          input#date_in(type='date', name='date_in', required)
+          br
+          label(for='date_out') Date Out:
+          input#date_out(type='date', name='date_out')
+          br
+          label(for='age') Age:
+          input#age(type='number', name='age', required)
+          br
+          label(for='address') Address:
+          input#address(type='text', name='address', required)
+          br
+          label(for='ward_id') Ward ID:
+          input#ward_id(type='text', name='ward_id', required)
+          br
+          button(type='submit') Add Prisoner
+
+        form#updatePrisonerForm(novalidate)
+          label(for='prisoner_id') Prisoner ID:
+          input#prisoner_id(type='text', name='prisoner_id', required)
+          br
+          label(for='prison_id') Prison ID:
+          input#prison_id(type='text', name='prison_id', required)
+          br
+          label(for='prisoner_name') Name:
+          input#prisoner_name(type='text', name='prisoner_name', required)
+          br
+          label(for='case_id') Case ID:
+          input#case_id(type='number', name='case_id', required)
+          br
+          label(for='date_in') Date In:
+          input#date_in(type='date', name='date_in', required)
+          br
+          label(for='date_out') Date Out:
+          input#date_out(type='date', name='date_out')
+          br
+          label(for='age') Age:
+          input#age(type='number', name='age', required)
+          br
+          label(for='address') Address:
+          input#address(type='text', name='address', required)
+          br
+          label(for='ward_id') Ward ID:
+          input#ward_id(type='text', name='ward_id', required)
+          br
+          button(type='submit') Update Prisoner
+
     .filter-container
       label(for='filterId') Filter ID:
       input#filterId(type='text')
@@ -249,7 +289,6 @@ body
       formData.forEach((value, key) => {
         prisonerData[key] = value;
       });
-      console.log(prisonerData)
       fetch('/api/v1/prisoner', {
         method: 'POST',
         headers: {
@@ -268,6 +307,54 @@ body
         .catch((error) => console.error('Error adding prisoner:', error));
       });
     }});
+      document.addEventListener('DOMContentLoaded', function () {
+        const updatePrisonerForm = document.getElementById('updatePrisonerForm');
+
+          if (updatePrisonerForm) {
+            updatePrisonerForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+      
+            const formData = new FormData(this);
+            const prisonerData = {};
+      
+            formData.forEach((value, key) => {
+              if (value.trim() !== '') { 
+                prisonerData[key] = value;
+              }
+            });
+
+            const prisonerId = prisonerData.prisoner_id;
+        
+            fetch(`/api/v1/prisoner/${prisonerId}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(prisonerData),
+            })
+            .then((response) => {
+              console.log('Response received:', response);
+              console.log('Prisoner updated successfully');
+              fetchAllPrisoners();  
+            })
+            .then((data) => {
+              if (data) {
+                console.log('Response data:', data);
+              }
+            })
+            .catch((error) => console.error('Error updating prisoner:', error));
+          });
+        }
+      });
+
+
+    
+    
+
+    
+
+
+    
 
 
     

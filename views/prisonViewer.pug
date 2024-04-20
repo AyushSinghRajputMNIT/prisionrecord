@@ -79,6 +79,14 @@ head
     form {
     margin-bottom: 20px;
     }
+    .form-container {
+    display: flex; 
+    }
+    .form-container form {
+    width: 50%; 
+    padding: 10px; 
+    box-sizing: border-box; 
+    }
     form input[type='text'],
     form input[type='date'],
     form input[type='number'] {
@@ -119,20 +127,36 @@ body
   .container
     h1 Prisons List
     if user && user.role === 'admin'
-      form#addPrisonForm
-        label(for='prison_id') Prison ID:
-        input#prison_id(type='text', name='prison_id', required)
-        br
-        label(for='prison_name') Name:
-        input#prison_name(type='text', name='prison_name', required)
-        br
-        label(for='address') Address:
-        input#address(type='text', name='address', required)
-        br
-        label(for='warden') Warden:
-        input#warden(type='text', name='warden', required)
-        br
-        button(type='submit') Add Prison
+      .form-container
+        form#addPrisonForm
+          label(for='prison_id') Prison ID:
+          input#prison_id(type='text', name='prison_id', required)
+          br
+          label(for='prison_name') Name:
+          input#prison_name(type='text', name='prison_name', required)
+          br
+          label(for='address') Address:
+          input#address(type='text', name='address', required)
+          br
+          label(for='warden') Warden:
+          input#warden(type='text', name='warden', required)
+          br
+          button(type='submit') Add Prison
+
+        form#updatePrisonForm(novalidate)
+          label(for='prison_id') Prison ID:
+          input#prison_id(type='text', name='prison_id', required)
+          br
+          label(for='prison_name') Name:
+          input#prison_name(type='text', name='prison_name', required)
+          br
+          label(for='address') Address:
+          input#address(type='text', name='address', required)
+          br
+          label(for='warden') Warden:
+          input#warden(type='text', name='warden', required)
+          br
+          button(type='submit') Update Prison
     .filter-container
       label(for='filterId') Filter ID:
       input#filterId(type='text')
@@ -177,7 +201,6 @@ body
     `;
     prisonTableBody.appendChild(row);
     });
-    history.pushState(null, null, newUrl);
     })
     .catch((error) =>
     console.error('Error fetching prison data:', error)
@@ -200,7 +223,6 @@ body
     `;
     prisonTableBody.appendChild(row);
     });
-    history.pushState(null, null, newUrl);
     })
     .catch((error) =>
     console.error('Error fetching prison data:', error)
@@ -250,3 +272,42 @@ body
         .catch((error) => console.error('Error adding prison:', error));
       });
     }});
+    document.addEventListener('DOMContentLoaded', function () {
+        const updatePrisonForm = document.getElementById('updatePrisonForm');
+
+          if (updatePrisonForm) {
+            updatePrisonForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+      
+            const formData = new FormData(this);
+            const prisonData = {};
+      
+            formData.forEach((value, key) => {
+              if (value.trim() !== '') { 
+                prisonData[key] = value;
+              }
+            });
+
+            const prisonId = prisonData.prison_id;
+        
+            fetch(`/api/v1/prison/${prisonId}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(prisonData),
+            })
+            .then((response) => {
+              console.log('Response received:', response);
+              console.log('Prison updated successfully');
+              fetchAllPrisons();  
+            })
+            .then((data) => {
+              if (data) {
+                console.log('Response data:', data);
+              }
+            })
+            .catch((error) => console.error('Error updating prison:', error));
+          });
+        }
+      });

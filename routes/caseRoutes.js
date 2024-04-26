@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.route('/').get(caseController.getCases);
 router.route('/').post(caseController.createCase)
-router.route('/:id').get(caseController.getCaseById);
+router.route('/:id').get(caseController.getCaseById).patch(caseController.updateCase);
 
 module.exports = router
